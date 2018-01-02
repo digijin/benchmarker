@@ -6,12 +6,12 @@ let tileParams = [
 ]
 let tilesize = 20
 for (let x = 0; x <= 11; x++) {
-for (let y = 0; y <= 11; y++) {
-    tileParams.push({
-        src: { x: x*tilesize, y: y*tilesize, w: 20, h: 20 },
-        dest: { x: 200-(x*tilesize), y: 200-(y*tilesize), w: 20, h: 20 }
-    })
-}
+    for (let y = 0; y <= 11; y++) {
+        tileParams.push({
+            src: { x: x * tilesize, y: y * tilesize, w: 20, h: 20 },
+            dest: { x: 200 - (x * tilesize), y: 200 - (y * tilesize), w: 20, h: 20 }
+        })
+    }
 }
 
 function makeCanvas() {
@@ -35,7 +35,13 @@ function fillRect() {
     let context = canvas.getContext('2d');
     let pattern = context.createPattern(image.img, 'no-repeat');
     context.fillStyle = pattern
-    context.fillRect(0, 0, 220, 220);
+    tileParams.forEach((p) => {
+        // let p = tileParams[2]
+        // console.log(p)
+        context.resetTransform()
+        context.translate(p.dest.x-p.src.x,p.dest.y-p.src.y)
+        context.fillRect(p.src.x,p.src.y, 20,20);
+    })
     return canvas;
 }
 
