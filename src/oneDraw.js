@@ -19,14 +19,6 @@ suite.add('drawImage', function () {
     .add('putImageData', function () {
         fns.putImageData()
     })
-// add listeners
-//   .on('cycle', function(event) {
-//     console.log(event.currentTarget.name, String(event.target));
-//   })
-//   .on('complete', function() {
-//     console.log('Fastest is ' + this.filter('fastest').map('name'));
-//   })
-//   // run async
-//   .run({ 'async': true });
+
 
 module.exports = addReporter(suite);
