@@ -36,11 +36,9 @@ function fillRect() {
     let pattern = context.createPattern(image.img, 'no-repeat');
     context.fillStyle = pattern
     tileParams.forEach((p) => {
-        // let p = tileParams[2]
-        // console.log(p)
-        context.resetTransform()
         context.translate(p.dest.x-p.src.x,p.dest.y-p.src.y)
         context.fillRect(p.src.x,p.src.y, 20,20);
+        context.resetTransform()
     })
     return canvas;
 }
@@ -49,14 +47,30 @@ function fillRectPremadePattern() {
     let canvas = makeCanvas();
     let context = canvas.getContext('2d');
     context.fillStyle = image.pattern
-    context.fillRect(0, 0, 220, 220);
+    tileParams.forEach((p) => {
+        context.translate(p.dest.x-p.src.x,p.dest.y-p.src.y)
+        context.fillRect(p.src.x,p.src.y, 20,20);
+        context.resetTransform()
+    })
     return canvas;
 }
 
 function putImageData() {
     let canvas = makeCanvas();
     let context = canvas.getContext('2d');
-    context.putImageData(image.data, 0, 0);
+    tileParams.forEach((p) => {
+        // let p = tileParams[3]
+        context.putImageData(image.data, 
+            // 200,200,
+            // -100,-100,
+            // 100,100,
+            // 20, 20
+            p.dest.x-p.src.x, p.dest.y-p.src.y,
+            p.src.x, p.src.y, 
+            p.src.w, p.src.h
+        );
+
+    })
     return canvas;
 }
 
