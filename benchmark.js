@@ -1,4 +1,4 @@
-var suite = new Benchmark.Suite;
+
 
 let url = "color.jpg"
 
@@ -56,12 +56,6 @@ function fillRect(){
   context.fillRect(0, 0, 220, 220);
   return canvas;
 }
-function putImageData(){
-  let canvas = makeCanvas();
-  let context = canvas.getContext('2d');
-  context.putImageData(imgdata, 0, 0);
-  return canvas;
-}
 
 function fillRectPremadePattern(){
   let canvas = makeCanvas();
@@ -72,7 +66,14 @@ function fillRectPremadePattern(){
   return canvas;
 }
 
+function putImageData(){
+  let canvas = makeCanvas();
+  let context = canvas.getContext('2d');
+  context.putImageData(imgdata, 0, 0);
+  return canvas;
+}
 function runTests(){
+  var suite = new Benchmark.Suite;
   // add tests
   suite.add('drawImage', function() {
     drawImage()
