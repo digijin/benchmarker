@@ -1,13 +1,14 @@
 var suite = new Benchmark.Suite;
 
-let url = "https://www.color-meanings.com/wp-content/uploads/2014/02/Colors-of-the-Rainbow.jpg"
+let url = "color.jpg"
 
-let img, imgpattern
+let img, imgpattern, imgdata
 window.onload = () => {
   img = document.createElement('img');
   img.src=url
   img.onload = ()=> {
     imgpattern = makeCanvas().getContext('2d').createPattern(img, 'no-repeat')
+    imgdata = drawImage().getContext('2d').getImageData(0,0,220,220)
 
 
     let go = document.createElement('button');
@@ -21,10 +22,15 @@ window.onload = () => {
     show.innerHTML = "show"
     document.body.appendChild(show)
     show.onclick = () => {
+    //  document.body.innerHTML += "<br />original<br />"
      document.body.appendChild(img) 
+    //  document.body.innerHTML += "<br />drawimage<br />"
      document.body.appendChild(drawImage()) 
+    //  document.body.innerHTML += "<br />fillRect<br />"
      document.body.appendChild(fillRect()) 
+    //  document.body.innerHTML += "<br />fillRectPremadePattern<br />"
      document.body.appendChild(fillRectPremadePattern()) 
+     document.body.appendChild(putImageData()) 
     }
   }
 }
@@ -50,6 +56,12 @@ function fillRect(){
   context.fillRect(0, 0, 220, 220);
   return canvas;
 }
+function putImageData(){
+  let canvas = makeCanvas();
+  let context = canvas.getContext('2d');
+  context.putImageData(imgdata, 0, 0);
+  return canvas;
+}
 
 function fillRectPremadePattern(){
   let canvas = makeCanvas();
@@ -70,6 +82,9 @@ function runTests(){
   })
   .add('fillRectPremadePattern', function() {
     fillRectPremadePattern()
+  })
+  .add('putImageData', function() {
+    putImageData()
   })
   // add listeners
   .on('cycle', function(event) {
