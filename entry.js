@@ -1,6 +1,6 @@
 
 let image = require('./src/image');
-let suite = require('./src/oneDraw')
+let suite = require('./src/tileDraw')
 let fns = require('./src/tileDrawFunctions')
 
 window.onload = () => {
