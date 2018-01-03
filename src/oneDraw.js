@@ -4,7 +4,7 @@ let image = require("./image");
 
 let fns = require("./oneDrawFunctions");
 
-var suite = new Benchmark.Suite("One Draw");
+var suite = new Benchmark.Suite("One Draw on existing canvas");
 // add tests
 suite
 	.add("drawImage", function() {
