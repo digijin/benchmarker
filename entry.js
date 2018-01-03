@@ -1,27 +1,32 @@
-
-let image = require('./src/image');
-let suite = require('./src/tileDraw')
-let fns = require('./src/tileDrawFunctions')
+let image = require("./src/image");
+let suiteTile = require("./src/tileDraw");
+let suiteOne = require("./src/oneDraw");
+let fns = require("./src/oneDrawFunctions");
 
 window.onload = () => {
+	let one = document.createElement("button");
+	one.innerHTML = "one";
+	document.body.appendChild(one);
+	one.onclick = () => {
+		suiteOne.run();
+	};
 
-    let go = document.createElement('button');
-    go.innerHTML = "go"
-    document.body.appendChild(go)
-    go.onclick = () => {
-        suite.run();
-    }
+	let tile = document.createElement("button");
+	tile.innerHTML = "tile";
+	document.body.appendChild(tile);
+	tile.onclick = () => {
+		suiteTile.run();
+	};
 
-    let show = document.createElement('button');
-    show.innerHTML = "show"
-    document.body.appendChild(show)
-    show.onclick = () => {
-        document.body.appendChild(image.img)
-        document.body.appendChild(fns.drawImage())
-        document.body.appendChild(fns.fillRect())
-        document.body.appendChild(fns.fillRectPremadePattern())
-        document.body.appendChild(fns.putImageData())
-    }
-
-
-}
+	let show = document.createElement("button");
+	show.innerHTML = "show";
+	document.body.appendChild(show);
+	show.onclick = () => {
+		document.body.appendChild(image.img);
+		document.body.appendChild(fns.drawImage());
+		document.body.appendChild(fns.fillRect());
+		document.body.appendChild(fns.fillRectPremadePattern());
+		document.body.appendChild(fns.putImageData());
+		document.body.appendChild(fns.pixi());
+	};
+};
