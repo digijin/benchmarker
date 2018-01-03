@@ -88,22 +88,31 @@ function putImageData() {
 }
 
 // function r() {}
-// PIXI.loader.add("color.jpg").load(r);
+// PIXI.loader.add("sprites.json").load(r);
+window.PIXI = PIXI;
 
 let app = new PIXI.Application({ width: 220, height: 220 });
 function pixi() {
-	let texture = PIXI.utils.TextureCache["color.jpg"];
+	let textures = PIXI.loader.resources["sprites.json"].textures;
+	// let texture = PIXI.utils.TextureCache["color.jpg"];
+	let stage = app.stage;
+	for (var i = stage.children.length - 1; i >= 0; i--) {
+		stage.removeChild(stage.children[i]);
+	}
+	let j = 0;
 	tileParams.forEach(p => {
 		// let p = tileParams[1];
-		let mytexture = PIXI.Texture.from(texture);
-		let rectangle = new PIXI.Rectangle(p.src.x, p.src.y, p.src.w, p.src.h);
-		mytexture.frame = rectangle;
+		j++;
+		if (j == 8) {
+			j = 0;
+		}
+		let mytexture = textures[j];
 		let sprite = new PIXI.Sprite(mytexture);
 		sprite.x = p.dest.x;
 		sprite.y = p.dest.y;
 
 		app.stage.addChild(sprite);
-		app.renderer.render(app.stage);
+		// app.renderer.render(app.stage);
 		// let sprite = new PIXI.Sprite(texture);
 		// // let p = tileParams[0];
 		// sprite.x = p.dest.x;

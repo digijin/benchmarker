@@ -46,7 +46,10 @@ function putImageData() {
 function r() {
 	// console.log("pixi ready");
 }
-PIXI.loader.add("color.jpg").load(r);
+PIXI.loader
+	.add("color.jpg")
+	.add("sprites.json")
+	.load(r);
 
 let app = new PIXI.Application({ width: 220, height: 220 });
 function pixi() {
