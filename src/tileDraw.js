@@ -1,24 +1,26 @@
-let addReporter = require('./addReporter')
+let addReporter = require("./addReporter");
 
-let image = require('./image')
+let image = require("./image");
 
-let fns = require('./tileDrawFunctions')
+let fns = require("./tileDrawFunctions");
 
-
-var suite = new Benchmark.Suite('Tiled Draw');
+var suite = new Benchmark.Suite("Tiled Draw");
 // add tests
-suite.add('drawImage', function () {
-        fns.drawImage()
-    })
-    .add('fillRect', function () {
-        fns.fillRect()
-    })
-    .add('fillRectPremadePattern', function () {
-        fns.fillRectPremadePattern()
-    })
-    .add('putImageData', function () {
-        fns.putImageData()
-    })
-
+suite
+	.add("drawImage", function() {
+		fns.drawImage();
+	})
+	.add("fillRect", function() {
+		fns.fillRect();
+	})
+	.add("fillRectPremadePattern", function() {
+		fns.fillRectPremadePattern();
+	})
+	.add("putImageData", function() {
+		fns.putImageData();
+	})
+	.add("pixi", function() {
+		fns.pixi();
+	});
 
 module.exports = addReporter(suite);
