@@ -52,12 +52,41 @@ PIXI.loader
 	.load(r);
 
 let app = new PIXI.Application({ width: 220, height: 220 });
-function pixi() {
+function pixiApp() {
 	let texture = PIXI.utils.TextureCache["color.jpg"];
 	let sprite = new PIXI.Sprite(texture);
 	app.stage.addChild(sprite);
+	app.renderer.render(app.stage);
 
+	for (var i = pixistage.children.length - 1; i >= 0; i--) {
+		pixistage.removeChild(pixistage.children[i]);
+	}
 	return app.view;
+}
+
+let pixicanvas = makeCanvas();
+renderer = PIXI.autoDetectRenderer(220, 220, {
+	view: pixicanvas
+});
+function pixiMakeStage() {
+	let stage = new PIXI.Container();
+	let texture = PIXI.utils.TextureCache["color.jpg"];
+	let sprite = new PIXI.Sprite(texture);
+	stage.addChild(sprite);
+	renderer.render(stage);
+	return pixicanvas;
+}
+let pixistage = new PIXI.Container();
+function pixi() {
+	let texture = PIXI.utils.TextureCache["color.jpg"];
+	let sprite = new PIXI.Sprite(texture);
+	pixistage.addChild(sprite);
+	renderer.render(pixistage);
+
+	for (var i = pixistage.children.length - 1; i >= 0; i--) {
+		pixistage.removeChild(pixistage.children[i]);
+	}
+	return pixicanvas;
 }
 
 module.exports = {
@@ -66,5 +95,7 @@ module.exports = {
 	fillRect,
 	fillRectPremadePattern,
 	putImageData,
+	pixiApp,
+	pixiMakeStage,
 	pixi
 };

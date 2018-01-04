@@ -6,21 +6,21 @@ let fnsTile = require("./src/tileDrawFunctions");
 
 window.onload = () => {
 	let one = document.createElement("button");
-	one.innerHTML = "one";
+	one.innerHTML = "benchmark one";
 	document.body.appendChild(one);
 	one.onclick = () => {
 		suiteOne.run();
 	};
 
 	let tile = document.createElement("button");
-	tile.innerHTML = "tile";
+	tile.innerHTML = "benchmark tile";
 	document.body.appendChild(tile);
 	tile.onclick = () => {
 		suiteTile.run();
 	};
 
 	let showOne = document.createElement("button");
-	showOne.innerHTML = "show";
+	showOne.innerHTML = "show renders from one";
 	document.body.appendChild(showOne);
 	showOne.onclick = () => {
 		document.body.appendChild(image.img);
@@ -32,7 +32,7 @@ window.onload = () => {
 	};
 
 	let showTile = document.createElement("button");
-	showTile.innerHTML = "show";
+	showTile.innerHTML = "show renders from tile";
 	document.body.appendChild(showTile);
 	showTile.onclick = () => {
 		document.body.appendChild(image.img);

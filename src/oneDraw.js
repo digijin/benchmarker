@@ -21,6 +21,12 @@ suite
 	})
 	.add("pixi", function() {
 		fns.pixi();
+	})
+	.add("pixiMakeStage", function() {
+		fns.pixiMakeStage();
+	})
+	.add("pixiApp", function() {
+		fns.pixiApp();
 	});
 
 module.exports = addReporter(suite);
